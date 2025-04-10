@@ -111,23 +111,23 @@ public class OLEDDisplay {
 
         //ONCE YOU HAVE WRITTEN YOUR CODE,
         //UNCOMMENT THE CODE BELOW TO TEST!
-//        d.drawShape("Oval", 10, 8);
-//
-//        try {
-//            System.out.println("Pausing.");
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        d.drawShape("Rectangle", 10, 8);
-//
-//        try {
-//            System.out.println("Pausing.");
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+        d.drawShape("Oval", 10, 8);
+
+        try {
+            System.out.println("Pausing.");
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+           throw new RuntimeException(e);
+        }
+
+        d.drawShape("Rectangle", 10, 8);
+
+       try {
+           System.out.println("Pausing.");
+           Thread.sleep(3000);
+        } catch (InterruptedException e) {
+           throw new RuntimeException(e);
+        }
 
         d.stopDisplay();
     }
