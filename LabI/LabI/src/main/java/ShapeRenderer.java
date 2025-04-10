@@ -20,7 +20,18 @@ public class ShapeRenderer {
      * @param height the screen height
      */
     public ShapeRenderer(SSD1306 oledDisplay, int width, int height) {
-        throw new UnsupportedOperationException(); //replace this with your code!
+        if(width<1 || height <1){
+            throw new InvalidDimensionException("Width and height must be greater than or equal to 1");
+        }
+        if(width > 1 && width % 2 == 0){
+    width += 1;
+}
+        if (height > 1&& height %2 == 0){
+            height -=1;
+        }
+        this.oledDisplay = oledDisplay;
+        this.screen = new boolean[height][width];
+    //replace this with your code!
     }
 
     /**
@@ -33,7 +44,15 @@ public class ShapeRenderer {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException(); //replace this with your code!
+       StringBuilder builder = new StringBuilder();
+       for(boolean[] row : this.screen){
+           for (boolean cell: row){
+               builder.appenmd(cell ? "1": "0");
+           }
+           builder.append("\n");
+           return builder.toString();
+           //replace this with your code!
+        }
     }
 
     /**
@@ -56,7 +75,32 @@ public class ShapeRenderer {
      * @throws InvalidDimensionException when a or b is odd, or outside the screen dimensions
      */
     public void createRectangle(int a, int b) throws InvalidDimensionException {
-        throw new UnsupportedOperationException(); //replace this with your code!
+         if (a < 0 || b < 0){
+             throw new InvalidDimensionException("Dimensions a and b must be non-negative.");
+         }
+        if(a%2 != 0 || b%2 != 0){
+            throw new InvalidDimensionException("Dimensions a and b must be even.");//replace this with your code!
+    }
+        int screenHeight = this.screen.length;
+        int screenwidth = this.screen[0].length;
+        int rectWidth = (2*a)+1;
+        int rectHeight = (2*b)+1;
+        if(rectWidth > screenWidth || rectHeight > screenWeight){
+            throw new InvalidDimensionException(" Rectangle Dimensions too large for screen space.");
+        }
+        int centeX = (screenWidth)/2;
+        int centreY = (screenHeight)/2;
+
+        int topLeftX = MAth.max(0, cenrtreX - a);
+        int topLEftY = MAth.max(0, centreY - b);
+        int bottomRightX = Math.min(screenWidth - 1, centreX + a);
+        int bottomRightY = Math.min(screenWidth - 1, centreY + b);
+
+        for(int i = topLeftY; i<= bottomRightY; i++){
+            for (int j = topLeftX; j <= bottomRightX; jh++){
+                screen[i][j] = true;
+            }
+        }
     }
 
 
@@ -80,15 +124,53 @@ public class ShapeRenderer {
      * @throws InvalidDimensionException when a or b is odd, or outside the screen dimensions
      */
     public void createOval(int a, int b) throws InvalidDimensionException {
-        throw new UnsupportedOperationException(); //replace this with your code!
+        if(a < 0|| b<0){
+         throw new InvalidDimensionException("Dimensions a and b must be non-negative.");   //replace this with your code!
+    }
+        if(a%2 != 0 || b%2 != 0){
+            throw new InvalidDimensionException("Dimensions a and b must be even.");//replace this with your code!
+    }
+        int screenHeight = this.screen.length;
+        int screenwidth = this.screen[0].length;
+        int rectWidth = (2*a)+1;
+        int rectHeight = (2*b)+1;
+        if(rectWidth > screenWidth || rectHeight > screenWeight){
+            throw new InvalidDimensionException(" Rectangle Dimensions too large for screen space.");
+        }
+        int centeX = (screenWidth-1)/2;
+        int centreY = (screenHeight-1)/2;
+        for(int i - 0; i< screenHeight; i++){
+            for(int j = 0; j< screenWidth; j++){
+                double xDistance = Math.pow((j-centreX),2)/MAth.pow(a,2);
+                doubl;e yDistance = MAth.pow(i-centreY),2)/Math.pow(b,2);
+                if(xDistance +yDistance <= 1){
+                    screen[i][j] <=1){
+                        screen[i][j] =- true;
+                    }
+                }
+            }
+        }
+        
     }
 
     /**
      * Draw the values in the screen attribute to the screen.
      */
     public void drawtOLED() {
-        throw new UnsupportedOperationException(); //replace this with your code!
-    }
+        oledDisplay.getCanvas().clear();
+        for(int x = 0; x < this.screen.length; x++){
+            for(int y = 0; y< this.screen[0].length; y++){
+                if(this.screen[x][y]){
+                    oledDisplay.getCanvas().setPixelo(x,y, MonochromeCanvas.Color.BRIGHT);
+                }else{
+                    oledDisplay.getCanvas().setPixel(x, y, MonochromeCanvas.Color.DARK);
+                }
+            }
+        }
+        oledDisplay.display();
+        return this.screen[i][j];
+    } //replace this with your code!
+    
 
     /**
      * Get a value from the screen array.
@@ -99,7 +181,7 @@ public class ShapeRenderer {
      * @return the value at the position i,j in the screen array
      */
     public boolean get(int i, int j) {
-        return this.screen[i][j];
+        
+return this.screen[i][j];
     }
-
 }
