@@ -139,19 +139,18 @@ public class ShapeRenderer {
         }
         int centeX = (screenWidth-1)/2;
         int centreY = (screenHeight-1)/2;
-        for(int i - 0; i< screenHeight; i++){
+        for(int i = 0; i< screenHeight; i++){
             for(int j = 0; j< screenWidth; j++){
-                double xDistance = Math.pow((j-centreX),2)/MAth.pow(a,2);
-                doubl;e yDistance = MAth.pow(i-centreY),2)/Math.pow(b,2);
-                if(xDistance +yDistance <= 1){
-                    screen[i][j] <=1){
-                        screen[i][j] =- true;
+                double xDistance = Math.pow((j-centreX), 2)/Math.pow(a,2);
+                double yDistance = Math.pow((i-centreY), 2)/Math.pow(b,2);
+                if(xDistance + yDistance <= 1){
+                     screen[i][j] =- true;
                     }
                 }
             }
         }
         
-    }
+    
 
     /**
      * Draw the values in the screen attribute to the screen.
